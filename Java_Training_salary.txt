@@ -1,0 +1,35 @@
+import java.util.Scanner;
+public class salary{
+  public static void main(String [] args){
+         double salary;
+         Scanner scan = new Scanner(System.in);
+         System.out.println("Enter your salary: ");
+         salary = scan.nextDouble();
+    
+  if (salary < 1000)
+    System.out.println("You are not an employee");
+  else if (salary >=1000 && salary <=10_000) {
+    System.out.println("You are a Software Tester");
+  }
+  else if (salary >10_000 && salary <=25_000  ) {
+    System.out.println("You are a Software Developer");
+  }
+  else if
+   (salary >25_000 && salary <=50_000) {
+    System.out.println("You are a Project manager");
+  }
+  else if (salary >50_000 && salary <=100_000) {
+    System.out.println("You are a Team Leader");
+  }  
+  else {
+    System.out.println("You are a HR Manager");
+  }
+}
+} 
+  
+
+            
+
+  
+    
+    
