@@ -1,0 +1,27 @@
+import java.util.Scanner;
+	public class number{
+  	public static void main(String [] args){
+  	double num;
+  	Scanner scan = new Scanner(System.in);
+    	System.out.println("Input a number to check whether it's positive or 	negative: ");
+    	num = scan.nextDouble();
+  
+    if(num>0) {
+      System.out.println("The number you entered is a positive number");
+      }
+    else if (num<0){
+      System.out.println("The number you entered is a negative number");
+     
+    }
+    else {
+      System.out.println("Number is zero");
+    }
+      
+      
+  }
+   
+   }
+ 
+
+     
+    
