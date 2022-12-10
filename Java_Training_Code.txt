@@ -3,7 +3,7 @@ import java.util.Scanner;
   	public static void main(String [] args){
   	double num;
   	Scanner scan = new Scanner(System.in);
-    	System.out.println("Input a number to check whether it's positive or 	negative: ");
+    	System.out.println("Input a number to check whether it's positive or negative: ");
     	num = scan.nextDouble();
   
     if(num>0) {
