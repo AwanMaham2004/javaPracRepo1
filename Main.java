@@ -3,6 +3,5 @@ public class Main {
 
         Code code = new Code();
         code.code();
-
     }
 }

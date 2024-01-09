@@ -1,71 +1,100 @@
 import java.util.Scanner;
+import java.util.Date;
 
 public class Code {
 
     Scanner scan = new Scanner(System.in);
 
 
-    Number_Of_People numPeople = new Number_Of_People();
-    Date_And_Time dateTime = new Date_And_Time();
-    Menu menu = new Menu();
-    Feedback feedback = new Feedback();
+    Car_Type carType = new Car_Type();
+    Vehicle_Models VehicleModels = new Vehicle_Models();
     Availability availability = new Availability();
-    Waitlist waitlist = new Waitlist();
-
-        public void code(){
-            System.out.println("Welcome to Awan Restaurant.");
-            System.out.println("__________Deals and Offers of the season___________");
-            System.out.println("- For more than 15 people a party table can be organized in a separate room");
-            System.out.println("- Buy 2 pizzas & get 3 toppings for free");
-            System.out.println("- Buffett possibility after 12 pm till 4 pm");
-            System.out.println("- Free refill of drinks for just $1.99 if buffet is taken");
-            System.out.println("");
-            int repetition = 1;
-            while (repetition==1){
-                repetition=3;
-            String date = dateTime.date();
-            int time = dateTime.time();
-            String name = numPeople.name();
-            int noOfPeople = numPeople.numberOfPeople();
+    Login login = new Login();
+    Insurance insurance = new Insurance();
+    Duration duration = new Duration();
+    Payment payment = new Payment();
 
 
-            if (availability.availability()) {
-                System.out.println("Please choose from the given menu: ");
-                menu.menu();
-                menu.menuOrder();
-                String[] orderName = menu.getOrder();
-                double[] orderPrice = menu.getPrice();
-                double total = 0;
-                System.out.println("______________________________Awan Restaurant______________________________");
-                noOfPeople = noOfPeople-1;
-                System.out.println("Table reserved for " + name + " and " + noOfPeople + " people");
-                System.out.println("Number of items: ");
-                System.out.println("____________________________________________________________________________");
-                for (int i = 0; i < menu.index; i++) {
-                    total += orderPrice[i];
-                    System.out.println(orderName[i] + " $ " + orderPrice[i]);
-                }
-                System.out.println("____________________________________________________________________________");
-                System.out.println("Service charges: 20 ");
-                total = total + 20;
-                System.out.println("Your total bill is: $ " + total);
-                System.out.println("____________________________________________________________________________");
-                feedback.rate();
+    public void code(){
+        int reselectionOption = 1;
+            System.out.println("Welcome to Awan Car Rental Website where you can rent cars stress free");
+            login.Login();
+            System.out.println("Enter your name, age and gender accordingly: ");
+            User user1 = new User(scan.next(), scan.nextInt(), scan.next());
+            System.out.println("Thank you for entering the details. We will lead you to the next page in short...");
+            System.out.println("Loading...");
+            System.out.println("________________________________ Awan Car Rental _____________________________________");
 
-            }
-            else {
-                System.out.println("Sorry, the table is not available right now! Do you want to select again?");
-                System.out.println("Yes (1) | No (2)");
-                repetition = scan.nextInt();
-                if (repetition==1){
-                    System.out.println("Try again!");
-                }
-                else {
-                    waitlist.setNameOfPeople(name);
-                    waitlist.setNumberOfPeople(noOfPeople);
-                    waitlist.waitList();
-                }
-            }
+        try
+        {
+            Thread.sleep(5000);
         }
+        catch(InterruptedException ex)
+        {
+            ex.printStackTrace();
+
+        }
+
+            while(reselectionOption == 1) {
+                String CarType = carType.carType();
+                String vehicleModels = VehicleModels.ModelSelection(CarType);
+                String[] durationDate = duration.selectDate();
+                Boolean available = availability.modelAvailability();
+                available=true;
+
+
+                if (available) {
+                    double totalDurationAmount=0;
+                    double vehicleAmount = VehicleModels.rentalAmount;
+                    int days = duration.weeklySum();
+                    if (days>5){
+                        totalDurationAmount = days * vehicleAmount;
+                        totalDurationAmount = totalDurationAmount - vehicleAmount;
+                        System.out.println("You got the discount of " + vehicleAmount);
+                    }
+                    else {
+                        totalDurationAmount = days * vehicleAmount;
+                    }
+                    double insuranceAmount = insurance.insuranceCheck();
+                    double total = insuranceAmount+totalDurationAmount;
+                    payment.paymentMethod();
+
+                    reselectionOption = 0;
+
+
+                    System.out.println("____________________________________Invoice_________________________________________");
+                    user1.userDetails();
+                    System.out.println("Vehicle Type:           " + CarType);
+                    System.out.println("Vehicle Model:          " + vehicleModels);
+                    System.out.println("Pick Up date:           " + durationDate[0]);
+                    System.out.println("Returning date:         " + durationDate[1]);
+                    System.out.println("Vehicle rental days:    " + days);
+                    System.out.println("Vehicle Amount:         " + vehicleAmount);
+                    System.out.println("Total Duration Amount:  " + totalDurationAmount);
+                    if (insuranceAmount==0){
+                    String message = "No insurance bought";
+                    System.out.println("Insurance:              " + message);
+                    }
+                    else {
+                    System.out.println("Insurance Amount:       " + insuranceAmount);
+                    }
+                    System.out.println("Total Amount:           " + total);
+                    System.out.println("________________________________ Awan Car Rental _____________________________________");
+
+
+
+                } else {
+                    System.out.println("Your selected vehicle choice is not available right now. ");
+                    System.out.println("Do you want to reselect?");
+                    System.out.println("Yes (1) | No (2)");
+                    reselectionOption = scan.nextInt();
+                    if (reselectionOption == 1) {
+                        System.out.println(" Please select again: ");
+                    } else {
+                        System.out.println("Sorry for the inconvenience now go away!:)");
+                    }
+                }
+
+            }
     }
 }

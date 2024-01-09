@@ -4,8 +4,8 @@ public class Availability {
 
     Random random = new Random();
 
-    public boolean availability(){
+    public boolean modelAvailability(){
         return random.nextBoolean();
     }
-}
 
+}
